@@ -26,7 +26,6 @@ public class ArrayStack<T> {
 
     public void push(T t) throws Exception {
         if (isFull()) {
-//            throw new Exception("stack full");
             //扩容
             Object[] newDate = new Object[top * 2];
             for (int i = 0; i <= top; i++) {

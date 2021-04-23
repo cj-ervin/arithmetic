@@ -8,18 +8,6 @@ package com.cjervin.arithmetic.sort;
  */
 public class QuickSort {
 
-    public static void main(String[] args) {
-        int[] arr = {1, 5, 9, 6, 50, 63, 75, 10, 3, 2, 8, 7};
-        System.out.println("before sort :");
-        for (int a : arr) {
-            System.out.println(a);
-        }
-        System.out.println("after sort :");
-        int[] result = sort(arr);
-        for (int a : result) {
-            System.out.println(a);
-        }
-    }
 
     public static int[] sort(int[] arr) {
         return quickSort(arr, 0, arr.length - 1);
@@ -56,5 +44,17 @@ public class QuickSort {
         arr[b] = temp;
     }
 
+    public static void main(String[] args) {
+        int[] arr = {1, 5, 9, 6, 50, 63, 75, 10, 3, 2, 8, 7};
+        System.out.println("before sort :");
+        for (int a : arr) {
+            System.out.println(a);
+        }
+        System.out.println("after sort :");
+        int[] result = sort(arr);
+        for (int a : result) {
+            System.out.println(a);
+        }
+    }
 
 }
