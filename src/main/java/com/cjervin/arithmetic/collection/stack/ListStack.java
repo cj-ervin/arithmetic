@@ -8,7 +8,7 @@ package com.cjervin.arithmetic.collection.stack;
  */
 public class ListStack<T> {
 
-    private static class Node<T> {
+    private class Node<T> {
         T item;
         Node next;
 
