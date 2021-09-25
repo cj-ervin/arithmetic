@@ -52,7 +52,7 @@ public class BinarySortTree {
         } else if (node.left == null) {
             return node;
         } else {
-            return findMin(node);
+            return findMin(node.left);
         }
     }
 
@@ -62,7 +62,7 @@ public class BinarySortTree {
         } else if (node.right == null) {
             return node;
         } else {
-            return findMax(node);
+            return findMax(node.right);
         }
     }
 
@@ -122,24 +122,47 @@ public class BinarySortTree {
         }
         if (e > node.value) {
             //向右查找
-            remove(node.right, e);
+            node.right = remove(node.right, e);
         } else if (e < node.value) {
             //向左查找
-            remove(node.left, e);
+            node.left = remove(node.left, e);
         } else if (node.left != null && node.right != null) {
             //查找到目标节点
             node.value = findMin(node.right).value;
-            remove(node.right, node.value);
+            node.right = remove(node.right, node.value);
         } else {
             if (node.left == null && node.right == null) {
                 node = null;
             } else if (node.right != null) {
                 node = node.right;
-            } else if (node.left != null) {
+            } else {
                 node = node.left;
             }
+            return node;
         }
         return node;
     }
 
+
+    public static void main(String[] args) {
+        BinarySortTree tree = new BinarySortTree();
+        tree.insert(50);
+        tree.insert(20);
+        tree.insert(70);
+        tree.insert(12);
+        tree.insert(18);
+        tree.insert(63);
+
+        Node min = tree.findMin(tree.root);
+        System.out.println("min -->" + min.value);
+
+        Node max = tree.findMax(tree.root);
+        System.out.println("max -->" + max.value);
+
+        tree.remove(tree.root, 70);
+
+        max = tree.findMax(tree.root);
+        System.out.println("max -->" + max.value);
+
+    }
 }
