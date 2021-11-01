@@ -14,7 +14,6 @@ public class HeapSort {
         System.out.println("==========");
         for (int a : arr) {
             System.out.println(a);
-            ;
         }
     }
 
@@ -34,10 +33,6 @@ public class HeapSort {
                     swap(arr, 2 * (i + 1) - 1, i);
                 }
             }
-        }
-        for (int a : arr) {
-            System.out.println(a);
-
         }
         //进行n-1次循环
         for (int i = 0; i < size - 1; i++) {
