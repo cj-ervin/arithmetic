@@ -37,7 +37,7 @@ public class ReverseList {
             current = next;
         }
 
-        return current;
+        return pre;
     }
 
 
