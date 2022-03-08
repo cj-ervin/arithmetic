@@ -23,13 +23,13 @@ public class ReverseList {
 
     /**
      * 遍历方式
-     * @param node
-     * @return
+     * @param head 头节点
+     * @return result
      */
-    public static Node iterate(Node node) {
+    private static Node iterate(Node head) {
         Node pre = null;
         Node next;
-        Node current = node;
+        Node current = head;
         while (current != null) {
             next = current.next;
             current.next = pre;
@@ -40,6 +40,21 @@ public class ReverseList {
         return pre;
     }
 
+    /**
+     * 递归实现
+     * @param head 头节点
+     * @return result
+     */
+    private static Node recursion(Node head) {
+        if (head == null || head.next == null) {
+            return null;
+        }
+        Node newNode =  recursion(head.next);
+        head.next.next = head;
+        head.next = null;
+        return newNode;
+    }
+
 
     public static void main(String[] args) {
         Node node1 = new Node(1, null);
@@ -48,7 +63,9 @@ public class ReverseList {
         Node node4 = new Node(4, node3);
         Node node5 = new Node(5, node4);
 
-        Node iterate = iterate(node5);
+        Node node = recursion(node5);
+
         System.out.println("=====");
+        Node head = iterate(node5);
     }
 }
