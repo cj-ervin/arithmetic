@@ -1,4 +1,4 @@
-package com.cjervin.arithmetic.arithmetic;
+package com.cjervin.arithmetic.arithmetic.list;
 
 
 /**
@@ -7,18 +7,7 @@ package com.cjervin.arithmetic.arithmetic;
  * @author ervin
  * @Date 2022/3/7
  */
-public class ReverseList {
-
-
-    private static class Node<T> {
-        T item;
-        Node next;
-
-        Node(T element, Node<T> next) {
-            this.item = element;
-            this.next = next;
-        }
-    }
+public class ReverseList extends SimpleLinkedList{
 
 
     /**
