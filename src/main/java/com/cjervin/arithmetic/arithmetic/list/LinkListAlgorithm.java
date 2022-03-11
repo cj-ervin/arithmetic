@@ -100,8 +100,8 @@ public class LinkListAlgorithm extends SimpleLinkedList {
      * <p>
      * https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/huan-xing-lian-biao-by-changxiaojie-t407/
      *
-     * @param head
-     * @return
+     * @param head 头节点
+     * @return 环起点
      */
     public static Node detectCycle(Node head) {
         Node slow = head, fast = head;
@@ -126,7 +126,41 @@ public class LinkListAlgorithm extends SimpleLinkedList {
 
     }
 
-    //环相交
+
+    /**
+     * 链表相交
+     * 利用双指针实现，问题的关键是让两个指针同时走到相交的节点，由于两个链表长度不确定
+     * 我们让 x 指针先走完链表 A，再走链表 B， y 指针先走完链表 B，再走链表 A，
+     * 这样两个指针到达相交节点的长度是一样的。
+     * <p>
+     * https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/by-changxiaojie-9ija/
+     *
+     * @param headA 链表 A
+     * @param headB 链表 B
+     * @return 相交节点
+     */
+    public static Node getIntersectionNode(Node headA, Node headB) {
+        Node x = headA, y = headB;
+
+        boolean flagX = true;
+        boolean flagY = true;
+        while (x != null && x != y) {
+            x = x.next;
+            y = y.next;
+            if (x == null && flagX) {
+                flagX = false;
+                x = headB;
+            }
+            if (y == null && flagY) {
+                flagY = false;
+                y = headA;
+            }
+        }
+        if (x == y) {
+            return x;
+        }
+        return null;
+    }
 
 
     public static void main(String[] args) {
