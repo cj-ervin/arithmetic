@@ -72,7 +72,7 @@ public class LinkListAlgorithm extends SimpleLinkedList {
      * <p>
      * https://leetcode-cn.com/problems/linked-list-cycle/solution/pan-duan-lian-biao-zhong-shi-fou-you-hua-s9j0/
      *
-     * @param head 头节点
+     * @param head head头节点
      * @return 是否有环
      */
     public static boolean hasCycle(Node head) {
