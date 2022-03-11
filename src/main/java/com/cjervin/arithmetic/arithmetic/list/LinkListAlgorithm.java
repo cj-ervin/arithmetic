@@ -64,6 +64,29 @@ public class LinkListAlgorithm extends SimpleLinkedList {
         return l;
     }
 
+    /**
+     * 判断链表中是否有环
+     * <p>
+     * 利用快慢指针，快指针步长 2，慢指针指针步长 1，如果快指针走到最后为 null，说明不存在指针，如果款满指针相遇，说明
+     * 快指针比慢指针多走了一圈，此时有环。
+     * <p>
+     * https://leetcode-cn.com/problems/linked-list-cycle/solution/pan-duan-lian-biao-zhong-shi-fou-you-hua-s9j0/
+     *
+     * @param head 头节点
+     * @return 是否有环
+     */
+    public static boolean hasCycle(Node head) {
+        Node slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            if (slow == fast) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public static void main(String[] args) {
         Node x1 = new Node(30, null);
