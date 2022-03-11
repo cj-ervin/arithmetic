@@ -1,17 +1,17 @@
 package com.cjervin.arithmetic.arithmetic.list;
 
 /**
- * 合并链表
+ * 链表的一些算法题
  *
  * @author ervin
  * @Date 2022/3/10
  */
-public class MergeLists extends SimpleLinkedList{
+public class LinkListAlgorithm extends SimpleLinkedList {
 
 
     /**
      * 合并两个链表
-     * https://leetcode-cn.com/problems/merge-two-sorted-lists/solution/he-bing-liang-ge-you-xu-lian-biao-by-cha-loaq/
+     * https://leetcode-cn.com/problems/merge-two-sorted-lists/
      *
      * @param l1 链表 1 header
      * @param l2 链表 2 header
@@ -21,7 +21,7 @@ public class MergeLists extends SimpleLinkedList{
         Node head = new Node(-1, null), p = head;
         Node p1 = l1, p2 = l2;
         while (p1 != null && p2 != null) {
-            if (p1.item <  p2.item) {
+            if (p1.item < p2.item) {
                 p.next = p1;
                 p1 = p1.next;
             } else {
@@ -39,6 +39,31 @@ public class MergeLists extends SimpleLinkedList{
         return head.next;
     }
 
+    /**
+     * 查找链表倒数第 k 个节点
+     * <p>
+     * 维护两个指针，第一个指针先走 k 步，然后两个指针以同样的步长向后移动，
+     * 当第一个指针移动到最后一个节点时，取出第二个指针对应的节点即可。
+     * <p>
+     * 相似的题目，删除列表倒数第 N 个节点
+     * https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/solution/shuang-zhi-zhen-shan-chu-lian-biao-dao-s-epjz/
+     *
+     * @param head 头节点
+     * @param k    k
+     * @return 目标节点
+     */
+    public static Node findFromEnd(Node head, int k) {
+        Node r = head, l = head;
+        for (int i = 0; i < k; i++) {
+            r = r.next;
+        }
+        while (r != null) {
+            r = r.next;
+            l = l.next;
+        }
+        return l;
+    }
+
 
     public static void main(String[] args) {
         Node x1 = new Node(30, null);
@@ -53,7 +78,11 @@ public class MergeLists extends SimpleLinkedList{
         Node y4 = new Node(2, y3);
         Node y5 = new Node(0, y4);
 
-        Node node = mergeTwoLists(x5, y5);
+
+        Node node1 = mergeTwoLists(x5, y5);
+        System.out.println("====");
+
+        Node node2 = findFromEnd(node1, 3);
         System.out.println("====");
     }
 
