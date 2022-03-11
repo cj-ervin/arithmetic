@@ -88,6 +88,47 @@ public class LinkListAlgorithm extends SimpleLinkedList {
     }
 
 
+    /**
+     * 如果链表中含有环，如何计算这个环的起点？
+     * <p>
+     * 利用快慢指针：快指针（f）步长 2，慢指针(s)指针步长 1，当两个指针相遇时，假设 s 走过的长度为 k, f 走过的长度为 2k，
+     * 此时 k 为环长度的整数倍（s 走过的长度为 k，落在了环上的某一个节点 M ； f 走过的长度为 2k, 相当于先走了一个 k 的长度，
+     * 落到 M 上，然后又走了一个 k 的长度，绕环一圈或几圈，又走到了 M 上 ）。设头节点 X，环起点 Y，相遇点 Z, 假设环起点 Y 与
+     * 相遇点 Z 距离为 d ,此时头节点 X 与环起点 Y 距离为 k-d, 而且从相遇点 Z 再走 k-d 步也能到达环起点 Y。
+     * <p>
+     * 所以，当快慢指针相遇时，将快指针（f）、慢指针(s)任意一个指向头节点 X，然后两个指针同速前进，相遇之处就是环的起点了。
+     * <p>
+     * https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/huan-xing-lian-biao-by-changxiaojie-t407/
+     *
+     * @param head
+     * @return
+     */
+    public static Node detectCycle(Node head) {
+        Node slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+            //相遇
+            if (slow == fast) {
+                break;
+            }
+        }
+        if (fast == null || fast.next == null) {
+            // fast 遇到空指针说明没有环
+            return null;
+        }
+        fast = head;
+        while (fast != slow) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+        return slow;
+
+    }
+
+    //环相交
+
+
     public static void main(String[] args) {
         Node x1 = new Node(30, null);
         Node x2 = new Node(11, x1);
