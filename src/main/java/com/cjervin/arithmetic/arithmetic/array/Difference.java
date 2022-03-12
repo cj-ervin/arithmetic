@@ -40,7 +40,7 @@ public class Difference {
     public void increment(int i, int j, int val) {
         diff[i] = diff[i] + val;
         if (j + 1 < diff.length) {
-            diff[j] = diff[j] - val;
+            diff[j + 1] = diff[j + 1] - val;
         }
     }
 
@@ -57,4 +57,33 @@ public class Difference {
         }
         return arr;
     }
+
+    /**
+     * 航班预订统计
+     * <p>
+     * https://leetcode-cn.com/problems/corporate-flight-bookings/solution/hang-ban-yu-ding-tong-ji-by-changxiaojie-vfcr/
+     *
+     * @param bookings
+     * @param n
+     * @return
+     */
+    public static int[] corpFlightBookings(int[][] bookings, int n) {
+        int[] diff = new int[n];
+        for (int i = 0; i < bookings.length; i++) {
+            int[] t = bookings[i];
+            diff[t[0] - 1] += t[2];
+            if (t[1] < diff.length) {
+                diff[t[1]] -= t[2];
+            }
+        }
+        //将差分数组转换
+        int[] arr = new int[diff.length];
+        arr[0] = diff[0];
+        for (int i = 1; i < diff.length; i++) {
+            arr[i] = diff[i] + arr[i - 1];
+        }
+        return arr;
+
+    }
+
 }
