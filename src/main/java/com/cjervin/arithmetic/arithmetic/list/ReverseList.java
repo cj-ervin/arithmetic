@@ -36,7 +36,7 @@ public class ReverseList extends SimpleLinkedList{
      */
     private static Node recursion(Node head) {
         if (head == null || head.next == null) {
-            return null;
+            return head;
         }
         Node newNode =  recursion(head.next);
         head.next.next = head;
