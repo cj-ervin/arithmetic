@@ -17,7 +17,7 @@ public class Difference {
     /**
      * 构建差分数组
      *
-     * @param nums 输入数组
+     * @param nums 输入数组 pc修改
      */
     public Difference(int[] nums) {
         if (nums.length >= 1) {
