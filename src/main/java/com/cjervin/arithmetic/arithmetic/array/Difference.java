@@ -17,7 +17,7 @@ public class Difference {
     /**
      * 构建差分数组
      *
-     * @param nums 输入数组 pc修改 +++++
+     * @param nums 输入数组
      */
     public Difference(int[] nums) {
         if (nums.length >= 1) {
@@ -59,7 +59,7 @@ public class Difference {
     }
 
     /**
-     * 航班预订统计
+     * 航班预订统计 pc修改
      * <p>
      * https://leetcode-cn.com/problems/corporate-flight-bookings/solution/hang-ban-yu-ding-tong-ji-by-changxiaojie-vfcr/
      *
