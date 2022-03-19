@@ -20,6 +20,7 @@ public class BinaryTree {
         int val;
         TreeNode left;
         TreeNode right;
+        TreeNode next;
 
         TreeNode() {
         }
@@ -56,5 +57,34 @@ public class BinaryTree {
         invertTree(root.left);
         invertTree(root.right);
         return root;
+    }
+
+    /**
+     * 填充每个节点的下一个右侧节点指针
+     * <p>
+     * https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/solution/di-gui-lian-jie-by-changxiaojie-exy2/
+     *
+     * @param root
+     * @return
+     */
+    public TreeNode connect(TreeNode root) {
+        if (root == null) {
+            return null;
+        }
+        connectChildren(root.left, root.right);
+        return root;
+    }
+
+    private void connectChildren(TreeNode left, TreeNode right) {
+        if (left == null || right == null) {
+            return;
+        }
+        left.next = right;
+        //连接left的两个子节点
+        connectChildren(left.left, left.right);
+        //连接right的两个子节点
+        connectChildren(right.left, right.right);
+        //连接left.right, right.left
+        connectChildren(left.right, right.left);
     }
 }
