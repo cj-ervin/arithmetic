@@ -1,5 +1,8 @@
 package com.cjervin.arithmetic.arithmetic.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * @author ervin
  * @Date 2022/3/20
@@ -64,5 +67,42 @@ public class BinarySortTree {
         }
         // 限定左子树的最大值是 root.val，右子树的最小值是 root.val
         return doCheck(root.left, min, root) && doCheck(root.right, root, max);
+    }
+
+    /**
+     * 二叉树的最小深度
+     * <p>
+     * https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/solution/er-cha-shu-zui-duan-lu-jing-by-changxiao-ygl6/
+     *
+     * @param root
+     * @return
+     */
+    public int minDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        // root 本身就是一层，depth 初始化为 1
+        int depth = 1;
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            /* 将当前队列中的所有节点向四周扩散 */
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (node.left == null && node.right == null) {
+                    //说明此时已经走到了终点
+                    return depth;
+                }
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            depth++;
+        }
+        return depth;
     }
 }
