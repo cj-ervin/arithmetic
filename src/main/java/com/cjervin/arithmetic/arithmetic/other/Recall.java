@@ -95,4 +95,55 @@ public class Recall {
         }
     }
 
+
+    /**
+     * 划分为k个相等的子集
+     * <p>
+     * https://labuladong.gitee.io/algo/4/30/107/
+     *
+     * @param nums
+     * @param k
+     * @return
+     */
+    public boolean canPartitionKSubsets(int[] nums, int k) {
+        // 排除一些基本情况
+        if (k > nums.length) {
+            return false;
+        }
+        int sum = 0;
+        for (int v : nums) {
+            sum += v;
+        }
+        if (sum % k != 0) {
+            return false;
+        }
+        int target = sum / k;
+        int[] bucket = new int[k];
+        return checkPartition(nums, bucket, 0, target);
+    }
+
+    private boolean checkPartition(int[] nums, int[] bucket, int index, int target) {
+        if (index > nums.length - 1) {
+            for (int i : bucket) {
+                if (i != target) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        //穷举 num[index] 的所有情况
+        for (int i = 0; i < bucket.length; i++) {
+            //剪枝
+            if (bucket[i] + nums[index] > target) {
+                continue;
+            }
+            bucket[i] += nums[index];
+            if (checkPartition(nums, bucket, index + 1, target)) {
+                return true;
+            }
+            bucket[i] -= nums[index];
+        }
+        return false;
+    }
+
 }
