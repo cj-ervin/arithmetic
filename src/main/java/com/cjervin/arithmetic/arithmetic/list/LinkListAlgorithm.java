@@ -1,5 +1,7 @@
 package com.cjervin.arithmetic.arithmetic.list;
 
+import java.util.PriorityQueue;
+
 /**
  * 链表的一些算法题
  *
@@ -82,8 +84,43 @@ public class LinkListAlgorithm extends SimpleLinkedList {
         return l1.next;
     }
 
-
-
+    /**
+     * 合并 k 个有序链表
+     * <p>
+     * https://leetcode.cn/problems/merge-k-sorted-lists/description/
+     * <p>
+     * 给你一个链表数组，每个链表都已经按升序排列。
+     * 请你将所有链表合并到一个升序链表中，返回合并后的链表。
+     *
+     * @param lists
+     * @return
+     */
+    public Node mergeKLists(Node[] lists) {
+        if (lists.length == 0) {
+            return null;
+        }
+        //虚拟头结点
+        Node dummy = new Node(-1, null);
+        Node p = dummy;
+        //优先级队列，最小堆
+        PriorityQueue<Node> pq = new PriorityQueue<>(
+                lists.length, (a, b) -> (a.item - b.item));
+        for (Node head : lists) {
+            if (head != null) {
+                pq.add(head);
+            }
+        }
+        while (!pq.isEmpty()) {
+            Node pn = pq.poll();
+            p.next = pn;
+            if (pn.next != null) {
+                pn = pn.next;
+                pq.add(pn);
+            }
+            p = p.next;
+        }
+        return dummy.next;
+    }
 
     /**
      * 查找链表倒数第 k 个节点
