@@ -39,6 +39,52 @@ public class LinkListAlgorithm extends SimpleLinkedList {
         return head.next;
     }
 
+
+    /**
+     * 单列表的分解
+     * https://leetcode.cn/problems/partition-list/
+     * <p>
+     * 给你一个链表的头节点 head 和一个特定值 x ，请你对链表进行分隔，
+     * 使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前。
+     * <p>
+     * 你应当 保留 两个分区中每个节点的初始相对位置。
+     * <p>
+     * 输入：head = [1,4,3,2,5,2], x = 3
+     * 输出：[1,2,2,4,3,5]
+     *
+     * @param head head
+     * @param x flag
+     * @return 合并的链表
+     */
+    public static Node partition(Node head, int x) {
+        Node p = head;
+        Node l1 = new Node(-1, null);
+        Node l2 = new Node(-1, null);
+        Node p1 = l1, p2 = l2;
+        while (p != null) {
+            if (p.item < x) {
+                p1.next = p;
+                p1 = p1.next;
+            } else {
+                p2.next = p;
+                p2 = p2.next;
+            }
+            p = p.next;
+        }
+        if (p1.next != null) {
+            p1.next = null;
+        }
+        if (p2.next != null) {
+            p2.next = null;
+        }
+
+        p1.next = l2.next;
+        return l1.next;
+    }
+
+
+
+
     /**
      * 查找链表倒数第 k 个节点
      * <p>
