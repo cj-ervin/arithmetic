@@ -13,7 +13,7 @@ public class LinkListAlgorithm extends SimpleLinkedList {
 
     /**
      * 合并两个链表
-     * https://leetcode-cn.com/problems/merge-two-sorted-lists/
+     * <a href="https://leetcode-cn.com/problems/merge-two-sorted-lists/">...</a>
      *
      * @param l1 链表 1 header
      * @param l2 链表 2 header
@@ -44,7 +44,7 @@ public class LinkListAlgorithm extends SimpleLinkedList {
 
     /**
      * 单列表的分解
-     * https://leetcode.cn/problems/partition-list/
+     * <a href="https://leetcode.cn/problems/partition-list/">...</a>
      * <p>
      * 给你一个链表的头节点 head 和一个特定值 x ，请你对链表进行分隔，
      * 使得所有 小于 x 的节点都出现在 大于或等于 x 的节点之前。
@@ -87,13 +87,13 @@ public class LinkListAlgorithm extends SimpleLinkedList {
     /**
      * 合并 k 个有序链表
      * <p>
-     * https://leetcode.cn/problems/merge-k-sorted-lists/description/
+     * <a href="https://leetcode.cn/problems/merge-k-sorted-lists/description/">...</a>
      * <p>
      * 给你一个链表数组，每个链表都已经按升序排列。
      * 请你将所有链表合并到一个升序链表中，返回合并后的链表。
      *
-     * @param lists
-     * @return
+     * @param lists 有序链表
+     * @return 合并后的链表
      */
     public Node mergeKLists(Node[] lists) {
         if (lists.length == 0) {
@@ -129,7 +129,7 @@ public class LinkListAlgorithm extends SimpleLinkedList {
      * 当第一个指针移动到最后一个节点时，取出第二个指针对应的节点即可。
      * <p>
      * 相似的题目，删除列表倒数第 N 个节点
-     * https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/solution/shuang-zhi-zhen-shan-chu-lian-biao-dao-s-epjz/
+     * <a href="https://leetcode-cn.com/problems/remove-nth-node-from-end-of-list/solution/shuang-zhi-zhen-shan-chu-lian-biao-dao-s-epjz/">...</a>
      *
      * @param head 头节点
      * @param k    k
@@ -148,12 +148,32 @@ public class LinkListAlgorithm extends SimpleLinkedList {
     }
 
     /**
+     * 单链表的中点
+     * <p>
+     * <a href="https://leetcode.cn/problems/middle-of-the-linked-list/">...</a>
+     * <p>
+     * 问题的关键也在于我们无法直接得到单链表的长度 n，常规方法也是先遍历链表计算 n，再遍历一次得到第 n / 2 个节点，也就是中间节点。
+     * 如果想一次遍历就得到中间节点，也需要耍点小聪明，使用「快慢指针」的技巧：
+     *
+     * @param head head
+     * @return 中点
+     */
+    public Node middleNode(Node head) {
+        Node fast = head, slow = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    /**
      * 判断链表中是否有环
      * <p>
      * 利用快慢指针，快指针步长 2，慢指针指针步长 1，如果快指针走到最后为 null，说明不存在指针，如果款满指针相遇，说明
      * 快指针比慢指针多走了一圈，此时有环。
      * <p>
-     * https://leetcode-cn.com/problems/linked-list-cycle/solution/pan-duan-lian-biao-zhong-shi-fou-you-hua-s9j0/
+     * <a href="https://leetcode-cn.com/problems/linked-list-cycle/solution/pan-duan-lian-biao-zhong-shi-fou-you-hua-s9j0/">...</a>
      *
      * @param head head头节点
      * @return 是否有环
@@ -181,7 +201,7 @@ public class LinkListAlgorithm extends SimpleLinkedList {
      * <p>
      * 所以，当快慢指针相遇时，将快指针（f）、慢指针(s)任意一个指向头节点 X，然后两个指针同速前进，相遇之处就是环的起点了。
      * <p>
-     * https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/huan-xing-lian-biao-by-changxiaojie-t407/
+     * <a href="https://leetcode-cn.com/problems/linked-list-cycle-ii/solution/huan-xing-lian-biao-by-changxiaojie-t407/">...</a>
      *
      * @param head 头节点
      * @return 环起点
@@ -216,7 +236,7 @@ public class LinkListAlgorithm extends SimpleLinkedList {
      * 我们让 x 指针先走完链表 A，再走链表 B， y 指针先走完链表 B，再走链表 A，
      * 这样两个指针到达相交节点的长度是一样的。
      * <p>
-     * https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/by-changxiaojie-9ija/
+     * <a href="https://leetcode-cn.com/problems/intersection-of-two-linked-lists/solution/by-changxiaojie-9ija/">...</a>
      *
      * @param headA 链表 A
      * @param headB 链表 B
