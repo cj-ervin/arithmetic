@@ -1,4 +1,4 @@
-package com.cjervin.arithmetic.arithmetic.other;
+package com.cjervin.arithmetic.arithmetic.classical.recall;
 
 import java.util.LinkedList;
 import java.util.List;

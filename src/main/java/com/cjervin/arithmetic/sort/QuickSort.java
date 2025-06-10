@@ -45,7 +45,7 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {1, 5, 9, 6, 50, 63, 75, 10, 3, 2, 8, 7};
+        int[] arr = {11, 5, 9, 6, 50, 63, 75, 10, 3, 2, 8, 7};
         System.out.println("before sort :");
         for (int a : arr) {
             System.out.println(a);
