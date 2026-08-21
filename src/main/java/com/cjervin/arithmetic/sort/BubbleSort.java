@@ -13,7 +13,7 @@ public class BubbleSort {
         if (arr.length < 2) {
             return arr;
         }
-        //定义一个标志位，主要考虑到已经排好序的数组
+        // 定义一个标志位，主要考虑到已经排好序的数组
         for (int i = 1; i < arr.length; i++) {
             boolean flag = true;
             for (int j = 0; j < arr.length - i; j++) {
